@@ -10,16 +10,13 @@ module proj(Req, Blk, clk, FLR1, FLR2, FLR3, Door,Reset);
 	//initializing
 	initial begin
 		state=FL1;
-		Req=3'bxxx;
+		Req=3'000;
 		end
 	//clk cycle
 	always@(posedge clk)
-		if(Reset)
-			state=FL1;
-		else begin
-			past=state;
-			state=next;
-			end
+		begin
+		state=next;
+		end
 	//sequential 
 	always@(state,Blk,Req)
 	begin
