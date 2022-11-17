@@ -1,6 +1,5 @@
 # EE2742_project
 Elevator control
-Initial: floor 1, door closed
 
 The system has 4 inputs and 4 outputs.
 Inputs
