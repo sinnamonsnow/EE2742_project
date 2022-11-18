@@ -28,7 +28,6 @@ module proj(Req, Blk, clk, FLR1, FLR2, FLR3, Door,Reset);
     case(state)
         FL1:begin
             F1=1;
-            F2=0;F3=0;D=0;
             if(Req==3'b001)
             next=OP11;
             else if(Req==3'b010||Req==3'b100)
@@ -37,7 +36,6 @@ module proj(Req, Blk, clk, FLR1, FLR2, FLR3, Door,Reset);
         end
         FL2:begin
             F2=1;
-            F1=0;F3=0;D=0;
             if(Req==3'b010)
             next=OP21;
             else if(Req==3'b100)
@@ -47,40 +45,46 @@ module proj(Req, Blk, clk, FLR1, FLR2, FLR3, Door,Reset);
             else next=FL2;
         end
         FL3:begin
-            F1=1;
-            F2=0;F3=0;D=0;
+            F3=1;
+            F2=0;F1=0;D=0;
             if(Req==3'b001)
-            next=OP11;
+            next=OP31;
             else if(Req==3'b010||Req==3'b100)
             next=FL2;
             else next=FL3;
         end
         OP11:begin
             D=1;
+            F1=1;
             next=OP12;
         end
         OP12:begin
             D=1;
+            F1=1;
             if(!Blk)
             next=FL1;
             else next=OP11;
         end
         OP21:begin
             D=1;
+            F2=1;
             next=OP22;
         end
         OP22:begin
             D=1;
+            F2=1;
             if(!Blk)
             next=FL2;
             else next=OP21;
         end
         OP31:begin
             D=1;
+            F3=1;
             next=OP32;
         end
         OP32:begin
             D=1;
+            F3=1;
             if(!Blk)
             next=FL3;
             else next=OP31;
